@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "dotenv": "^10.0.0",
+    "kafkajs": "^1.15.0",
     "tslib": "^2.3.1"
   }
 }
