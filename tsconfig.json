@@ -9,7 +9,10 @@
     "module": "commonjs",
     "rootDir": "./src",
     "baseUrl": "./",
-    "paths": {},
+    "paths": {
+      "_/*": ["./src/*"],
+      "_services/*": ["./src/services/*"]
+    },
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
