@@ -1,0 +1,9 @@
+{
+  "name": "sumer-websocket-gateway",
+  "version": "1.0.0",
+  "description": "Websocket gateway for sumer project",
+  "main": "lib/index.js",
+  "repository": "https://github.com/utkusarioglu/sumer-websocket-gateway.git",
+  "author": "Utku Sarioglu <utkusarioglu@hotmail.com>",
+  "license": "MIT"
+}
