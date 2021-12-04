@@ -1,0 +1,12 @@
+FROM node:alpine AS BUILDER
+WORKDIR /usr/src/app
+COPY websocket-gateway websocket-gateway
+WORKDIR /usr/src/app/websocket-gateway
+RUN yarn build
+
+FROM node:alpine
+WORKDIR /usr/src/app/websocket-gateway
+COPY --from=BUILDER /usr/src/app/websocket-gateway/lib lib
+COPY --from=BUILDER /usr/src/app/websocket-gateway/package.json .
+
+ENTRYPOINT yarn start
