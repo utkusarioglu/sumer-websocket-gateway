@@ -3,4 +3,5 @@
 /types
 *.env
 !example.env
+/tsBuildInfo.json
 
