@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  websocket-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    working_dir: /usr/src/app/websocket-gateway
+    volumes:
+      - .:/usr/src/app/websocket-gateway
