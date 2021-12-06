@@ -37,6 +37,11 @@ spec:
               value: {{ .Values.kafkaBrokers }}
             - name: KAFKA_TOPIC
               value: {{ .Values.kafkaIcTopic }}
+              # TODO check whether this is actually needed. It's possible that kubernetes already exposes this
+            - name: PORT
+              value: {{ .Values.service.port }}
+            - name: CORS_ORIGIN
+              value: {{ .Values.corsOrigin }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
