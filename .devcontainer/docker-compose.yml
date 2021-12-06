@@ -6,6 +6,8 @@ services:
       - vscode-exts-insiders:/root/.vscode-server-insiders/extensions
       - ~/.config/gh:/root/.config/gh
     command: /bin/sh -c "while sleep 1000; do :; done"
+    ports:
+      - 8080:8080
     depends_on:
       - kafka
     networks:
