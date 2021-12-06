@@ -3,7 +3,9 @@ declare global {
     interface ProcessEnv {
       NODE_ENV?: "development" | "testing" | "production";
       HOSTNAME?: string;
-      KAFKA_BROKERS?: string; //csv
+      KAFKA_BROKERS?: string; // csv
+      PORT?: string; // number
+      CORS_ORIGIN?: string; // csv
     }
   }
 }
