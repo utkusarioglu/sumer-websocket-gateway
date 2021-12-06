@@ -1,6 +1,7 @@
 import { Kafka } from "kafkajs";
 import type { Consumer } from "kafkajs";
 import { HOSTNAME, KAFKA_BROKERS } from "_/__config";
+import { StartListeningParams } from "./kafka.service.types";
 
 /**
  * Provides connectivity with the kafka cluster
@@ -25,9 +26,13 @@ class KafkaService {
   /**
    * Start listening to subscribed topics
    */
-  async startListening() {
+  async startListening({ ethereumBlockContent }: StartListeningParams) {
     await this.consumer.run({
       eachMessage: async ({ topic, partition, message }) => {
+        switch (topic) {
+          case "ethereum-block-content":
+            ethereumBlockContent(message.value?.toString());
+        }
         console.log({ topic, partition, message: message.value?.toString() });
       },
     });
