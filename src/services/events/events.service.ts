@@ -1,11 +1,10 @@
 import EventEmitter from "events";
+import type { CallbackWithOneParam } from "_types/callback.types";
 
 const eventEmitter = new EventEmitter();
 
-type CallbackWithOneParam<T> = (data: T) => void;
-
 const eventsService = {
-  blockContent: {
+  ethereumBlockContent: {
     pub: (data: unknown) => eventEmitter.emit("block-content", data),
     sub: (cb: CallbackWithOneParam<unknown>) =>
       eventEmitter.on("block-content", cb),
