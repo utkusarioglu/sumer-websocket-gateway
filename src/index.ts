@@ -21,3 +21,5 @@ const server = http.createServer(app);
 server.listen(PORT, () => console.log(`websocket-gateway started on ${PORT}`));
 const io = new IoService(server);
 io.listen();
+
+app.get("/_status/healthz", (_req, res) => { res.send("OK")})
