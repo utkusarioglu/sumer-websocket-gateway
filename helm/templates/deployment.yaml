@@ -37,11 +37,6 @@ spec:
               value: {{ .Values.kafkaBrokers }}
             - name: KAFKA_TOPIC
               value: {{ .Values.kafkaIcTopic }}
-              # TODO check whether this is actually needed. It's possible that kubernetes already exposes this
-            - name: PORT
-              value: {{ .Values.service.port }}
-            - name: CORS_ORIGIN
-              value: {{ .Values.corsOrigin }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -53,8 +48,10 @@ spec:
               containerPort: 80
               protocol: TCP
           livenessProbe:
+            initialDelaySeconds: 20
+            periodSeconds: 5
             httpGet:
-              path: /
+              path: /_status/healthz
               port: http
           # readinessProbe:
           #   httpGet:
@@ -67,6 +64,10 @@ spec:
               value: {{ .Values.nodeEnv }}
             - name: KAFKA_BROKERS
               value: {{ .Values.kafkaBrokers }}
+            - name: PORT
+              value: {{ .Values.service.port | quote }}
+            - name: CORS_ORIGIN
+              value: {{ .Values.corsOrigin }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
