@@ -9,8 +9,9 @@ import eventsService from "_services/events/events.service";
 export class IoService {
   private io: Server;
 
-  constructor(server: HttpServer) {
-    this.io = new Server(server, {
+  constructor(httpServer: HttpServer) {
+    this.io = new Server(httpServer, {
+      path: "/io/",
       cors: {
         origin: CORS_ORIGIN,
       },
