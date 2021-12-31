@@ -1,13 +1,16 @@
-FROM node:alpine AS BUILDER
+FROM node:17-slim AS BUILDER
 WORKDIR /usr/src/app
 COPY websocket-gateway websocket-gateway
 WORKDIR /usr/src/app/websocket-gateway
+RUN yarn
 RUN yarn build
 
-FROM node:alpine
+FROM node:17-slim
 WORKDIR /usr/src/app/websocket-gateway
 COPY --from=BUILDER /usr/src/app/websocket-gateway/lib lib
 COPY --from=BUILDER /usr/src/app/websocket-gateway/node_modules node_modules
 COPY --from=BUILDER /usr/src/app/websocket-gateway/package.json .
 
+ARG PORT
+EXPOSE $PORT
 ENTRYPOINT yarn start
