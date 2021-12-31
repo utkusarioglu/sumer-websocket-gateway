@@ -5,11 +5,9 @@ services:
       # VSCode
       - vscode-exts:/root/.vscode-server/extensions
       - vscode-exts-insiders:/root/.vscode-server-insiders/extensions
-      # Github CLI
-      - ~/.config/gh:/root/.config/gh
+      # k8s
+      - ~/.kube/config:/root/.kube/config
     command: /bin/sh -c "while sleep 1000; do :; done"
-    depends_on:
-      - kafka
     networks:
       - websocket-gateway
 
