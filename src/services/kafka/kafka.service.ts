@@ -1,7 +1,11 @@
-import { Kafka } from "kafkajs";
+import { Kafka, CompressionCodecs, CompressionTypes } from "kafkajs";
 import type { Consumer } from "kafkajs";
 import { HOSTNAME, KAFKA_BROKERS } from "_/__config";
 import { StartListeningParams } from "./kafka.service.types";
+// @ts-expect-error
+import SnappyCodec from "kafkajs-snappy";
+
+CompressionCodecs[CompressionTypes.Snappy] = SnappyCodec;
 
 /**
  * Provides connectivity with the kafka cluster
@@ -28,12 +32,11 @@ class KafkaService {
    */
   async startListening({ ethereumBlockContent }: StartListeningParams) {
     await this.consumer.run({
-      eachMessage: async ({ topic, partition, message }) => {
+      eachMessage: async ({ topic, message }) => {
         switch (topic) {
           case "ethereum-block-content":
             ethereumBlockContent(message.value?.toString());
         }
-        console.log({ topic, partition, message: message.value?.toString() });
       },
     });
   }
