@@ -25,6 +25,16 @@
       "problemMatcher": [],
       "label": "yarn start",
       "detail": "Start production server"
+    },
+    {
+      "label": "bridge-to-kubernetes.resource",
+      "type": "bridge-to-kubernetes.resource",
+      "resource": "websocket-gateway",
+      "resourceType": "service",
+      "ports": [4000],
+      "targetCluster": "docker-desktop",
+      "targetNamespace": "services",
+      "useKubernetesServiceEnvironmentVariables": true
     }
   ]
 }
