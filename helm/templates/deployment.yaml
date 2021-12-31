@@ -57,13 +57,15 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           env:
             - name: NODE_ENV
-              value: {{ .Values.nodeEnv }}
+              value: {{ .Values.nodeEnv | quote }}
             - name: KAFKA_BROKERS
-              value: {{ .Values.kafkaBrokers }}
+              value: {{ .Values.kafkaBrokers | quote }}
             - name: PORT
-              value: {{ .Values.service.port | quote }}
+              value: {{ .Values.appPort | quote }}
             - name: CORS_ORIGIN
-              value: {{ .Values.corsOrigin }}
+              value: {{ .Values.corsOrigin | quote }}
+            - name: LOG_LEVEL
+              value: {{ .Values.logLevel | quote }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

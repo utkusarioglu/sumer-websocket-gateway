@@ -93,4 +93,5 @@ nodeEnv: production
 kafkaBrokers: kafka:9092
 kafkaIcTopic: ethereum-block-content
 corsOrigin: localhost
+logLevel: info
 appPort: 4000
