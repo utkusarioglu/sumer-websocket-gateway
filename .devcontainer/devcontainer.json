@@ -8,6 +8,16 @@
       "activityBar.background": "#770000"
     }
   },
-  "extensions": ["ms-kubernetes-tools.vscode-kubernetes-tools", "mindaro.mindaro"],
-  "postCreateCommand": "scripts/post-create-command.sh"
+  "extensions": [
+    "ms-kubernetes-tools.vscode-kubernetes-tools",
+    "mindaro.mindaro"
+  ],
+  "postCreateCommand": "scripts/post-create-command.sh",
+  "features": {
+    "github-cli": "latest",
+    "kubectl-helm-minikube": {
+      "kubectl": "latest",
+      "helm": "latest"
+    }
+  }
 }
