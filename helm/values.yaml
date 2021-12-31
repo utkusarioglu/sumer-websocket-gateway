@@ -10,8 +10,14 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
-icImage:
+kafkaConsumerIcImage:
   repository: kafka-consumer-ic
+  pullPolicy: IfNotPresent
+  tag: ""
+
+envIcImage:
+  repository: env-ic
+  pullPolicy: IfNotPresent
   tag: ""
 
 imagePullSecrets: []
@@ -94,4 +100,6 @@ kafkaBrokers: kafka:9092
 kafkaIcTopic: ethereum-block-content
 corsOrigin: localhost
 logLevel: info
+varsToCheck: NODE_ENV,LOG_LEVEL
+restartTimeout: 5000
 appPort: 4000
