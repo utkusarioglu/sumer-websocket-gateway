@@ -13,22 +13,6 @@ services:
     networks:
       - websocket-gateway
 
-  kafka:
-    image: wurstmeister/kafka
-    environment:
-      KAFKA_ADVERTISED_HOST_NAME: kafka
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_CREATE_TOPICS: ethereum-block-content:1:1,ethereum-block-number:1:1
-    depends_on:
-      - zookeeper
-    networks:
-      - websocket-gateway
-
-  zookeeper:
-    image: wurstmeister/zookeeper
-    networks:
-      - websocket-gateway
-
 volumes:
   vscode-exts:
   vscode-exts-insiders:
