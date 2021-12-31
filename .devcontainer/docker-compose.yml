@@ -2,12 +2,12 @@ version: "3.9"
 services:
   websocket-gateway:
     volumes:
+      # VSCode
       - vscode-exts:/root/.vscode-server/extensions
       - vscode-exts-insiders:/root/.vscode-server-insiders/extensions
+      # Github CLI
       - ~/.config/gh:/root/.config/gh
     command: /bin/sh -c "while sleep 1000; do :; done"
-    ports:
-      - 8080:8080
     depends_on:
       - kafka
     networks:
